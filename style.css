@@ -180,10 +180,16 @@ button:hover {
 
 .button-group {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     margin-top: 10px;
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    padding: 10px 15px;
+    font-size: 1rem;
 }
 
 .danger-btn {
@@ -236,13 +242,33 @@ canvas.active {
     text-align: left;
     font-size: 1.1rem;
     width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+#leaderboard-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+#leaderboard-list::-webkit-scrollbar-thumb {
+    background: var(--neon-blue);
+    border-radius: 5px;
 }
 
 #leaderboard-list li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px 0;
     border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.score-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--neon-pink);
+    transform: scale(1.2);
 }
 
 #leaderboard-list li span:last-child {

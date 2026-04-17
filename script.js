@@ -15,6 +15,7 @@ const gameOverScreen = document.getElementById("game-over-screen");
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
 const resetScoresBtn = document.getElementById("reset-scores-btn");
+const deleteSelBtn = document.getElementById("delete-sel-btn");
 const playerNameInput = document.getElementById("player-name");
 const currentScoreEl = document.getElementById("current-score");
 const finalScoreEl = document.getElementById("final-score");
@@ -329,8 +330,8 @@ function handleLeaderboard(newScore) {
     // 4. Sort the array numerically in descending order (highest score first)
     leaderboard.sort((a, b) => b.score - a.score);
 
-    // 5. Keep only the Top 5 scores
-    leaderboard = leaderboard.slice(0, 5);
+    // 5. Keep all scores (no longer sliced to top 5)
+    // leaderboard = leaderboard.slice(0, 5);
 
     // 6. Save the updated array back to Local Storage
     localStorage.setItem(LS_KEY, JSON.stringify(leaderboard));
@@ -353,12 +354,18 @@ function renderLeaderboard(leaderboard) {
         return;
     }
 
-    leaderboard.forEach((entry) => {
+    leaderboard.forEach((entry, index) => {
         const li = document.createElement("li");
         const hackerName = entry.name;
         const hackerScore = entry.score;
 
-        li.innerHTML = `<span>${hackerName}</span> <span>${hackerScore}</span>`;
+        li.innerHTML = `
+            <div style="display:flex; align-items:center;">
+                <input type="checkbox" class="score-checkbox" data-index="${index}">
+                <span>${hackerName}</span>
+            </div>
+            <span>${hackerScore}</span>
+        `;
         leaderboardListEl.appendChild(li);
     });
 }
