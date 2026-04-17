@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Snake</title>
+    <!-- Outfit Font for Tech/Modern Feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="game-wrapper">
+        <div class="score-display">SCORE: <span id="current-score">0</span></div>
+        <div id="game-container">
+            <!-- Start Screen -->
+            <div id="start-screen" class="panel">
+                <h1 class="glitch-text" data-text="CYBER_SNAKE">CYBER SNAKE</h1>
+                <p>Welcome, Operator.</p>
+                <input type="text" id="player-name" placeholder="ENTER ALIAS" maxlength="15" autocomplete="off">
+                <button id="start-btn">PLAY</button>
+            </div>
+
+            <!-- Game Canvas (Hidden by default) -->
+            <canvas id="game-canvas" width="600" height="600"></canvas>
+
+            <!-- Game Over / Leaderboard Screen -->
+            <div id="game-over-screen" class="panel hidden">
+                <h1 class="glitch-text" data-text="SYSTEM_FAILURE">WELCOME TO MY SYSTEM</h1>
+                <h2>HIGHEST SCORE: <span id="final-score">0</span></h2>
+
+                <div class="leaderboard-section">
+                    <h3>TOP PLAYERS SCORES</h3>
+                    <ul id="leaderboard-list">
+                        <!-- Leaderboard entries injected via JS -->
+                    </ul>
+                </div>
+
+                <div class="button-group">
+                    <button id="restart-btn">NEW</button>
+                    <button id="reset-scores-btn" class="danger-btn">CLEAR</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Close game-wrapper -->
+
+    <!-- Script at the end so HTML elements load first -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+/* style.css - Vibrant Cyberpunk Neon Aesthetics */
+
+:root {
+    --bg-color: #0b0c10;
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ea;
+    --neon-green: #39ff14;
+    --glass-bg: rgba(20, 20, 25, 0.7);
+    --glass-border: rgba(0, 243, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-image: radial-gradient(circle at center, #1a1a24 0%, var(--bg-color) 100%);
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    /* Adds space between score and the game box */
+}
+
+#game-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+    background-color: #050505;
+}
+
+/* Glassmorphism Panels */
+.panel {
+    position: absolute;
+    width: 80%;
+    max-width: 450px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.panel.hidden {
+    display: none !important;
+}
+
+/* Glitch Animation */
+.glitch-text {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    position: relative;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--neon-pink);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--neon-green);
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(21px, 9999px, 83px, 0);
+    }
+
+    20% {
+        clip: rect(98px, 9999px, 81px, 0);
+    }
+
+    40% {
+        clip: rect(78px, 9999px, 55px, 0);
+    }
+
+    60% {
+        clip: rect(31px, 9999px, 47px, 0);
+    }
+
+    80% {
+        clip: rect(65px, 9999px, 16px, 0);
+    }
+
+    100% {
+        clip: rect(51px, 9999px, 12px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(61px, 9999px, 15px, 0);
+    }
+
+    20% {
+        clip: rect(96px, 9999px, 7px, 0);
+    }
+
+    40% {
+        clip: rect(84px, 9999px, 42px, 0);
+    }
+
+    60% {
+        clip: rect(79px, 9999px, 86px, 0);
+    }
+
+    80% {
+        clip: rect(41px, 9999px, 97px, 0);
+    }
+
+    100% {
+        clip: rect(83px, 9999px, 11px, 0);
+    }
+}
+
+button {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--bg-color);
+    background-color: var(--neon-blue);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-color: #fff;
+    box-shadow: 0 0 20px #fff, 0 0 30px var(--neon-blue);
+    transform: scale(1.05);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+.danger-btn {
+    background-color: var(--neon-pink);
+    color: #fff;
+    box-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+}
+
+.danger-btn:hover {
+    background-color: #fff;
+    box-shadow: 0 0 20px #fff, 0 0 30px var(--neon-pink);
+    color: var(--neon-pink);
+}
+
+.score-display {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Canvas styling */
+canvas {
+    display: none;
+    /* Hidden on start screen */
+    border-radius: 10px;
+}
+
+canvas.active {
+    display: block;
+}
+
+.leaderboard-section {
+    width: 100%;
+    margin-top: 10px;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 15px;
+}
+
+.leaderboard-section h3 {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink);
+    margin-bottom: 10px;
+}
+
+#leaderboard-list {
+    list-style: none;
+    text-align: left;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+#leaderboard-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+#leaderboard-list li span:last-child {
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+/* Player Name Input Styling */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 5px;
+    outline: none;
+    text-transform: uppercase;
+    box-shadow: inset 0 0 5px var(--neon-blue);
+    transition: all 0.2s;
+}
+
+input[type="text"]::placeholder {
+    color: rgba(0, 243, 255, 0.4);
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+    background: rgba(0, 0, 0, 0.8);
+}
