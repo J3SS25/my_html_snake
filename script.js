@@ -361,7 +361,6 @@ function renderLeaderboard(leaderboard) {
 
         li.innerHTML = `
             <div style="display:flex; align-items:center;">
-                <input type="checkbox" class="score-checkbox" data-index="${index}">
                 <span>${hackerName}</span>
             </div>
             <span>${hackerScore}</span>
